@@ -1,0 +1,47 @@
+CREATE TABLE pelanggan (
+nomHp varchar(11) PRIMARY KEY,
+password varchar(4),
+nama varchar(50),
+aras varchar(10)
+);
+
+INSERT INTO pelanggan (nomHp, password, nama, aras) VALUES
+('8888888888', '8888', 'ADMIN', 'ADMIN');
+
+CREATE TABLE produk (
+idProduk int(11) AUTO_INCREMENT PRIMARY KEY,
+namaProduk varchar(255),
+detail text,
+harga decimal(10,2),
+gambar varchar(20)
+);
+
+CREATE TABLE meja (
+noMeja varchar(10) PRIMARY KEY,
+info varchar(20),
+tersedia varchar(2)
+);
+
+CREATE TABLE pesanan(
+bil int(11) AUTO_INCREMENT PRIMARY KEY,
+tarikh datetime,
+status varchar(20),
+nomHp varchar(11),
+noMeja varchar(10),
+cara varchar(10),
+FOREIGN KEY (nomHp) REFERENCES pelanggan(nomHp)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (noMEJA) REFERENCES meja(noMeja)
+ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE belian (
+idBelian int(11) AUTO_INCREMENT PRIMARY KEY,
+kuantiti int,
+idProduk int, 
+bil int(11),
+FOREIGN KEY (idProduk) REFERENCES produk(idProduk)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (bil) REFERENCES pesanan(bil)
+ON DELETE CASCADE ON UPDATE CASCADE
+);

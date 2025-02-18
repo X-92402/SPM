@@ -1,0 +1,117 @@
+/*UNTUK PAPARAN HEADER */
+.header{
+    width: 100%;
+    height: 250px;
+    /*LETAKKAN GAMBAR HEADER */
+    background: url('gambar/banner.jpg');
+    background-size: cover;
+    color: black;
+    text-align: left;
+    padding-left: 5%;
+}
+/*UNTUK PAPARAN MENU-KIRI */
+#menu {
+    width: 20%;
+    padding: 10px;
+    left: 1%;
+    float: left;
+}
+/*UNTUK PAPARAN ISI LAMAN */
+#isi{
+    width: 80%;
+    padding: 10px;
+    left: 1%;
+    float: left;
+}
+/*UNTUK BUTANG */
+button{
+    background-color: #f44098;
+    color: #fff;
+    padding: 10px 20px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+/*UNTUK ANIMASI BUTANG */
+button:hover {
+    background-color: #f3eaee;
+}
+/* UNTUK PAPARAN TABLE */
+table { width: 80%;
+border-collapse: collapse;
+}
+th { text-align: left;}
+th, td { padding: 5px;
+border-bottom:10px solid transparent;
+background-color: #fff;
+color: black;
+background-clip: padding-box;
+}
+/*UNTUK FUNGSI CETAKAN */
+@media print{
+    .header, select, form, #menu, #sembunyi, button
+    {display: none;}
+    #printarea, div {
+        top: 0;
+        left: 1%;
+        padding: 0;
+        width: 100%;
+    }
+}
+/*UNTUK FONT */
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+/*UNTUK BACKGROUND */
+body {
+    background: #f5cce0;
+}
+/*UNTUK WRAP */
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+/*UNTUK KAD PRODUK */
+.product-card {
+    border: 1px solid;
+    border-radius: 2px;
+    width: 400px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+/*UNTUK SAIZ IMEJ */
+.product-image {
+    width: 50%;
+    height: auto;
+}
+/*UNTUK SAIZ DAN WARNA FONT */
+p{
+    font-size: 12px;
+    color: #000000;
+    margin: 2px 0;
+}
+/*SEMUA BARIS */
+* {
+    box-sizing: border-box;
+}
+/*PAPARAN */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/*RESPONSIVE SCREEN */
+@media screen and (max-width: 600px){
+    #menu,#isi {
+        width: 100%;
+    }
+}
+
+.form-container {
+    text-align: center;
+}
