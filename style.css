@@ -1,117 +1,267 @@
-/*UNTUK PAPARAN HEADER */
-.header{
+/* Color Variables */
+:root {
+    --primary-dark: #2C2C2C;    /* Dark charcoal for text */
+    --primary-red: #A52A2A;     /* Deep red for accents */
+    --secondary-tan: #F4EAE0;   /* Warm tan for backgrounds */
+    --accent-wood: #8B4513;     /* Wood brown for details */
+    --light-cream: #FFF8F0;     /* Light cream for cards */
+    --text-dark: #1A1A1A;       /* Almost black for text */
+}
+
+/* UNTUK PAPARAN HEADER */
+.header {
     width: 100%;
     height: 250px;
-    /*LETAKKAN GAMBAR HEADER */
-    background: url('gambar/banner.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('gambar/banner.jpg');
     background-size: cover;
-    color: black;
-    text-align: left;
-    padding-left: 5%;
+    background-position: center;
+    color: var(--light-cream);
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-/*UNTUK PAPARAN MENU-KIRI */
+
+/* UNTUK BACKGROUND */
+body {
+    background: var(--secondary-tan);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', 'Helvetica Neue', sans-serif;
+}
+
+/* UNTUK MENU-KIRI */
 #menu {
     width: 20%;
-    padding: 10px;
-    left: 1%;
-    float: left;
+    padding: 20px;
+    background-color: var(--primary-dark);
+    color: var(--light-cream);
 }
-/*UNTUK PAPARAN ISI LAMAN */
-#isi{
-    width: 80%;
-    padding: 10px;
-    left: 1%;
-    float: left;
-}
-/*UNTUK BUTANG */
-button{
-    background-color: #f44098;
-    color: #fff;
-    padding: 10px 20px;
-    border:none;
-    border-radius: 5px;
-    cursor: pointer;
+
+#menu a {
+    color: var(--light-cream);
     text-decoration: none;
 }
-/*UNTUK ANIMASI BUTANG */
+
+/* UNTUK ISI LAMAN */
+#isi {
+    width: 80%;
+    padding: 20px;
+    background-color: var(--light-cream);
+}
+
+/* UNTUK BUTANG */
+button {
+    background-color: var(--primary-red);
+    color: var(--light-cream);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* UNTUK ANIMASI BUTANG */
 button:hover {
-    background-color: #f3eaee;
+    background-color: #8B0000;
+    transform: translateY(-2px);
 }
-/* UNTUK PAPARAN TABLE */
-table { width: 80%;
-border-collapse: collapse;
+
+/* UNTUK KAD PRODUK */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    margin: 15px;
+    padding: 20px;
+    background-color: var(--light-cream);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
-th { text-align: left;}
-th, td { padding: 5px;
-border-bottom:10px solid transparent;
-background-color: #fff;
-color: black;
-background-clip: padding-box;
+
+.product-card:hover {
+    transform: translateY(-5px);
 }
-/*UNTUK FUNGSI CETAKAN */
-@media print{
-    .header, select, form, #menu, #sembunyi, button
-    {display: none;}
-    #printarea, div {
-        top: 0;
-        left: 1%;
-        padding: 0;
+
+/* UNTUK TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: var(--light-cream);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background-color: var(--primary-dark);
+    color: var(--light-cream);
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* UNTUK WRAPPER */
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* FORM STYLING */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: var(--light-cream);
+    margin: 5px 0;
+}
+
+/* RESPONSIVE SCREEN */
+@media screen and (max-width: 600px) {
+    #menu, #isi {
         width: 100%;
     }
-}
-/*UNTUK FONT */
-html {
-    font-family: "Lucida Sans", sans-serif;
-}
-/*UNTUK BACKGROUND */
-body {
-    background: #f5cce0;
-}
-/*UNTUK WRAP */
-.wrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    flex-wrap: wrap;
-}
-/*UNTUK KAD PRODUK */
-.product-card {
-    border: 1px solid;
-    border-radius: 2px;
-    width: 400px;
-    margin: 5px;
-    padding: 10px;
-    background-color: #fff;
-    text-align: center;
-}
-/*UNTUK SAIZ IMEJ */
-.product-image {
-    width: 50%;
-    height: auto;
-}
-/*UNTUK SAIZ DAN WARNA FONT */
-p{
-    font-size: 12px;
-    color: #000000;
-    margin: 2px 0;
-}
-/*SEMUA BARIS */
-* {
-    box-sizing: border-box;
-}
-/*PAPARAN */
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-/*RESPONSIVE SCREEN */
-@media screen and (max-width: 600px){
-    #menu,#isi {
+    
+    .product-card {
         width: 100%;
+        margin: 10px 0;
+    }
+    
+    .header {
+        height: 200px;
     }
 }
 
-.form-container {
+/* PRINT STYLES */
+@media print {
+    .header, select, form, #menu, #sembunyi, button {
+        display: none;
+    }
+    #printarea, div {
+        background-color: white;
+        color: black;
+    }
+}
+
+/* LOGIN PAGE STYLING */
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.login-image {
+    flex: 1;
+    background-color: var(--light-cream);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-form {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.login-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    margin-bottom: 10px;
+}
+
+.login-form a {
     text-align: center;
+    margin-top: 10px;
+}
+/* SIGNUP PAGE STYLING */
+.signup-container {
+    display: flex;
+    height: 100vh;
+}
+
+.signup-image {
+    flex: 1;
+    background-color: var(--light-cream);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.signup-form {
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.signup-form h2 {
+    margin-bottom: 20px;
+}
+
+.signup-form form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.signup-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.signup-form button {
+    background-color: var(--primary-red);
+    color: var(--light-cream);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.signup-form button:hover {
+    background-color: #8B0000;
+    transform: translateY(-2px);
 }

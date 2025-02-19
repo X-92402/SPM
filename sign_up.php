@@ -1,53 +1,86 @@
 <?php include 'header.php'; ?>
 <html>
-    <head>
-        <style>
-            .warning-text {
-                color: red;
-            }
-            .small-text {
-                font-size: 10px;
-                color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- PANGGIL ISI -->
-        <div id="isi">
-            <h2>PENDAFTARAN PELANGGAN BARU </h2>
+<head>
+    <style>
+        .signup-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .signup-image {
+            flex: 1;
+            background-color: var(--light-cream);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .signup-form {
+            flex: 1;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .signup-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .signup-form form {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+        }
+
+        .signup-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .signup-form button {
+            background-color: var(--primary-red);
+            color: var(--light-cream);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background-color: #8B0000;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-image">
+            Gambar 2
+        </div>
+        <div class="signup-form">
+            <h2>PENDAFTARAN</h2>
             <form method="POST" action="signup_simpan.php">
-                <p class="warning-text">
-                    *Pastikan maklumat anda betul sebelum membuat pendaftaran.
-                </p>
-                <p>
-                    Nombor HP<br>
-                    <input type="text" 
-                           name="nomhp" 
-                           placeholder="Nombor HP tanpa tanda -" 
-                           minLength="9" 
-                           maxLength="11"
-                           size="30" 
-                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' 
-                           required 
-                           autofocus><br>
-                    <span class="small-text">
-                        *Password adalah 4 digit di depan nombor HP anda yang dijana secara automatik.
-                    </span>
-                </p>
-                <p>
-                    Nama<br>
-                    <input type="text" 
-                           name="nama" 
-                           placeholder="Nama Anda"
-                           size="60" 
-                           required>
-                </p>
-                <br>
-                <div>
-                    <button name="hantar" type="submit">DAFTAR</button>
-                    <button type="reset">RESET</button>
-                </div>
+                <label for="id">ID</label>
+                <input type="text" id="id" name="id" placeholder="ID" required>
+                <label for="password">Kata Laluan</label>
+                <input type="password" id="password" name="password" placeholder="Kata Laluan" required>
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" placeholder="Nama" required>
+                <label for="nomhp">Nom. HP</label>
+                <input type="text" id="nomhp" name="nomhp" placeholder="Nom. HP" required>
+                <label for="email">E-mel</label>
+                <input type="email" id="email" name="email" placeholder="E-mel" required>
+                <button type="submit" name="hantar">DAFTAR</button>
             </form>
         </div>
-    </body>
+    </div>
+</body>
 </html>
