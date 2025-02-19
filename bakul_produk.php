@@ -23,7 +23,7 @@ $bil = 1;
             <!-- KIRA HARGA * KUANTITI -->
             <?php 
             foreach ($_SESSION['cart'] as $idProduk => $qty) {
-                $produk = lihatProduk($con,$idProduk);
+                $produk = lihatProduk($con, $idProduk);
                 $totalPrice += $produk['harga'] * $qty;
                 $totalAmount += $qty;
             ?>
@@ -32,7 +32,7 @@ $bil = 1;
                     <td><img src="gambar/<?php echo $produk['gambar'];?>" class="product-image"></td>
                     <td><?php echo $produk['namaProduk'];?></td>
                     <td><?php echo $qty;?></td>
-                    <td><?php echo $produk['harga'];?></td>
+                    <td><?php echo number_format($produk['harga'], 2);?></td>
                     <td><?php echo number_format(($produk['harga'] * $qty), 2);?></td>
                     <td>
                         <!--KIRA SEMULA JIKA PERUBAHAN KTT -->
@@ -58,8 +58,8 @@ $bil = 1;
 
     <!-- PENGESAHAN PESANAN -->
     <h3>Pengesahan Pesanan</h3>
-    <p>Jumlah Item:<?php echo $totalAmount;?></p>
-    <p>Jumlah Harga:RM<?php echo number_format ($totalPrice, 2);?></p>
+    <p>Jumlah Item: <?php echo $totalAmount;?></p>
+    <p>Jumlah Harga: RM<?php echo number_format($totalPrice, 2);?></p>
 
     <!-- BUTANG SETUJU BUAT PESANAN -->
     <form action="setuju_pesanan.php" method="post">
@@ -69,10 +69,10 @@ $bil = 1;
     </form>
     <a href="produk_pilih.php"><button>Tambah Belian</button></a>
     <a href="reset.php"><button>Reset</button></a>
-    <?php
+<?php
 } else { ?>
     <!-- JIKA TIADA PESANAN WUJUD LAGI -->
-    <p> Tiada pesanan wujud. Sila pilih dari menu</p><br>
+    <p>Tiada pesanan wujud. Sila pilih dari menu</p><br>
     <a href="dashboard.php"><button>Pilih Item</button></a>
 <?php
 } ?>

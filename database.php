@@ -26,8 +26,8 @@ if (!$con) {
 
 #BOLEH UBAH DI SINI
 #TETAPAN SISTEM
-$namasys = "SYSTEM NAME";
-$namasys1 = "COMPANY NAME";
+$namasys = "Tian Yin SPM Project";
+$namasys1 = "The Ramen House";
 $motto = "MOTTO";
 
 
