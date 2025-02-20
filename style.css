@@ -8,23 +8,7 @@
     --text-dark: #1A1A1A;       /* Almost black for text */
 }
 
-/* UNTUK PAPARAN HEADER */
-.header {
-    width: 100%;
-    height: 250px;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('gambar/banner.jpg');
-    background-size: cover;
-    background-position: center;
-    color: var(--light-cream);
-    text-align: center;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* UNTUK BACKGROUND */
+/* General Styles */
 body {
     background: var(--secondary-tan);
     color: var(--text-dark);
@@ -33,28 +17,58 @@ body {
     font-family: 'Noto Sans JP', 'Helvetica Neue', sans-serif;
 }
 
-/* UNTUK MENU-KIRI */
-#menu {
-    width: 20%;
-    padding: 20px;
-    background-color: var(--primary-dark);
-    color: var(--light-cream);
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-#menu a {
+/* Header Styles */
+.header {
+    background-color: var(--primary-dark);
+    color: var(--light-cream);
+    text-align: center;
+    padding: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header h3 {
+    margin: 0;
+}
+
+/* Menu Styles */
+#menu {
+    width: 20%;
+    background-color: var(--primary-dark);
+    color: var(--light-cream);
+    padding: 20px;
+    box-sizing: border-box;
+    height: calc(100vh - 80px); /* Full height minus header height */
+    float: left;
+}
+
+#menu h4 {
+    margin-top: 0;
+}
+
+#menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#menu ul li {
+    margin: 10px 0;
+}
+
+#menu ul li a {
     color: var(--light-cream);
     text-decoration: none;
 }
 
-/* UNTUK ISI LAMAN */
-#isi {
-    width: 80%;
-    padding: 20px;
-    background-color: var(--light-cream);
-}
-
-/* UNTUK BUTANG */
-button {
+#menu ul li button {
     background-color: var(--primary-red);
     color: var(--light-cream);
     padding: 10px 20px;
@@ -64,96 +78,65 @@ button {
     transition: all 0.3s ease;
 }
 
-/* UNTUK ANIMASI BUTANG */
-button:hover {
+#menu ul li button:hover {
     background-color: #8B0000;
     transform: translateY(-2px);
 }
 
-/* UNTUK KAD PRODUK */
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 300px;
-    margin: 15px;
+/* Content Styles */
+#isi {
+    width: 80%;
     padding: 20px;
-    background-color: var(--light-cream);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
-/* UNTUK TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: var(--light-cream);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th {
-    background-color: var(--primary-dark);
-    color: var(--light-cream);
-    padding: 12px;
-    text-align: left;
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* UNTUK WRAPPER */
-.wrapper {
+    background-color: #fff;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;
-    justify-content: center;
+    box-sizing: border-box;
+    float: left;
 }
 
-/* FORM STYLING */
-input[type="text"],
-input[type="password"],
-input[type="number"],
-select,
-textarea {
-    padding: 8px;
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px;
+    padding: 20px;
     background-color: var(--light-cream);
-    margin: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 20px);
 }
 
-/* RESPONSIVE SCREEN */
+.product-image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h4 {
+    margin: 0;
+}
+
+/* Responsive Styles */
 @media screen and (max-width: 600px) {
     #menu, #isi {
         width: 100%;
     }
-    
-    .product-card {
-        width: 100%;
-        margin: 10px 0;
-    }
-    
-    .header {
-        height: 200px;
-    }
-}
 
-/* PRINT STYLES */
-@media print {
-    .header, select, form, #menu, #sembunyi, button {
-        display: none;
-    }
-    #printarea, div {
-        background-color: white;
-        color: black;
+    .product-item {
+        width: 100%;
     }
 }
 
@@ -166,6 +149,9 @@ textarea {
 .login-image {
     flex: 1;
     background-color: var(--light-cream);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,13 +187,25 @@ textarea {
 }
 
 .login-form button {
-    margin-bottom: 10px;
+    background-color: var(--primary-red);
+    color: var(--light-cream);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #8B0000;
+    transform: translateY(-2px);
 }
 
 .login-form a {
     text-align: center;
     margin-top: 10px;
 }
+
 /* SIGNUP PAGE STYLING */
 .signup-container {
     display: flex;
@@ -217,6 +215,9 @@ textarea {
 .signup-image {
     flex: 1;
     background-color: var(--light-cream);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;

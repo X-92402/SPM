@@ -10,30 +10,50 @@ if (!isset($_SESSION['cart'])) {
 }
 ?>
 
-<!-- SUSUNAN -->
-<div class="row">
-    <!-- PANGGIL MENU -->
-    <div id="menu">
-        <?php include 'menu.php'; ?>
-    </div>
-    <!-- RUANGAN PELANGGAN -->
-    <div id="isi">
-        <?php
-        if ($_SESSION['level'] == "PENGGUNA") {
-        ?>
-            <h3>SELAMAT DATANG <?php echo strtoupper ($_SESSION['nama']);?></h3>
-            <hr>
-            <!-- PILIH CARA MAKAN -->
-            <hr>
-            <div class="wrapper">
-                <?php include 'pilih_cara.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <!-- PAPAR HEADER -->
+        <div class="header">
+            <h1><?php echo $namasys1; ?></h1>
+            <h3>Selamat Datang, <?php echo strtoupper($_SESSION['nama']); ?></h3>
+        </div>
+
+        <!-- PAPAR MENU -->
+        <div id="menu">
+            <h4>MENU PENGGUNA</h4>
+            <ul>
+                <li><a href="dashboard.php">UTAMA</a></li>
+                <li>Makanan:</li>
+                <li>Shoyu Ramen</li>
+                <li>Miso Ramen</li>
+                <li>Tonkotsu Ramen</li>
+                <li><a href="produk_pilih.php"><button>PILIH</button></a></li>
+                <li><a href="logout.php"><button>LOGOUT</button></a></li>
+            </ul>
+        </div>
+
+        <!-- PAPAR ISI -->
+        <div id="isi">
+            <div class="product-list">
+                <?php
+                $products = semuaProduk($con);
+                while ($row = mysqli_fetch_assoc($products)) {
+                ?>
+                    <div class="product-item">
+                        <div class="product-image" style="background-image: url('gambar/<?php echo $row['gambar']; ?>');"></div>
+                        <div class="product-details">
+                            <h4><?php echo $row['namaProduk']; ?></h4>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-        <?php
-        } else {
-            #RUANGAN UNTUK ADMIN
-            echo "<h3>Selamat Datang Pentadbir Sistem</h3>";
-            include 'list_produk.php';
-        }
-        ?>
+        </div>
     </div>
-</div>
+</body>
+</html>

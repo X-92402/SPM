@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomHp = $_POST['nomHp'];
     $status = 'PENDING';
     $meja = ($_SESSION['cara'] === 'TAKE-AWAY') ? null : $_SESSION['meja']; // Handle takeaway case
-    $cara = $_SESSION['cara'];
+    $cara = $_SESSION['cara'] === 'DINE IN' ? 'DI' : 'TA';
 
     // Add record to `pesanan` table
     $sqlPesanan = "INSERT INTO pesanan (tarikh, status, nomHp, noMeja, cara) VALUES (?, ?, ?, ?, ?)";
