@@ -1,47 +1,46 @@
-CREATE TABLE pelanggan (
-nomHp varchar(11) PRIMARY KEY,
-password varchar(4),
-nama varchar(50),
-aras varchar(10)
+-- Table: PELANGGAN (Customers)
+CREATE TABLE PELANGGAN (
+    idPelanggan INT AUTO_INCREMENT PRIMARY KEY,
+    nomHp VARCHAR(15) UNIQUE NOT NULL,
+    nama VARCHAR(50) NOT NULL,
+    kataLaluan VARCHAR(255) NOT NULL,
+    emel VARCHAR(100) UNIQUE NOT NULL
 );
 
-INSERT INTO pelanggan (nomHp, password, nama, aras) VALUES
-('8888888888', '8888', 'ADMIN', 'ADMIN');
-
-CREATE TABLE produk (
-idProduk int(11) AUTO_INCREMENT PRIMARY KEY,
-namaProduk varchar(255),
-detail text,
-harga decimal(10,2),
-gambar varchar(20)
+-- Table: PRODUK (Products)
+CREATE TABLE PRODUK (
+    idProduk VARCHAR(10) PRIMARY KEY,
+    namaProduk VARCHAR(50) NOT NULL,
+    huraian VARCHAR(100),
+    harga DECIMAL(10,2) NOT NULL,
+    gambar VARCHAR(50)
 );
 
-CREATE TABLE meja (
-noMeja varchar(10) PRIMARY KEY,
-info varchar(20),
-tersedia varchar(2)
+-- Table: MEJA (Tables)
+CREATE TABLE MEJA (
+    noMeja VARCHAR(10) PRIMARY KEY,
+    info VARCHAR(50),
+    tersedia VARCHAR(20)
 );
 
-CREATE TABLE pesanan(
-bil int(11) AUTO_INCREMENT PRIMARY KEY,
-tarikh datetime,
-status varchar(20),
-nomHp varchar(11),
-noMeja varchar(10),
-cara varchar(10),
-FOREIGN KEY (nomHp) REFERENCES pelanggan(nomHp)
-ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (noMEJA) REFERENCES meja(noMeja)
-ON DELETE RESTRICT ON UPDATE CASCADE
+-- Table: PESANAN (Orders)
+CREATE TABLE PESANAN (
+    bil INT PRIMARY KEY,
+    tarikh DATE NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    idPelanggan INT,
+    noMeja VARCHAR(10),
+    cara VARCHAR(10) NOT NULL,
+    FOREIGN KEY (idPelanggan) REFERENCES PELANGGAN(idPelanggan),
+    FOREIGN KEY (noMeja) REFERENCES MEJA(noMeja)
 );
 
-CREATE TABLE belian (
-idBelian int(11) AUTO_INCREMENT PRIMARY KEY,
-kuantiti int,
-idProduk int, 
-bil int(11),
-FOREIGN KEY (idProduk) REFERENCES produk(idProduk)
-ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (bil) REFERENCES pesanan(bil)
-ON DELETE CASCADE ON UPDATE CASCADE
+-- Table: BELIAN (Purchases)
+CREATE TABLE BELIAN (
+    idBelian VARCHAR(10) PRIMARY KEY,
+    kuantiti INT NOT NULL,
+    idProduk VARCHAR(10),
+    bil INT,
+    FOREIGN KEY (idProduk) REFERENCES PRODUK(idProduk),
+    FOREIGN KEY (bil) REFERENCES PESANAN(bil)
 );
