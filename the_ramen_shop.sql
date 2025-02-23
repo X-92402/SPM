@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2025 at 09:10 AM
+-- Generation Time: Feb 23, 2025 at 10:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,6 +46,21 @@ CREATE TABLE `meja` (
   `tersedia` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `meja`
+--
+
+INSERT INTO `meja` (`noMeja`, `info`, `tersedia`) VALUES
+('A1', 'Window seat', 'Y'),
+('A2', 'Corner table', 'Y'),
+('A3', 'Near entrance', 'Y'),
+('B1', 'Center table', 'Y'),
+('B2', 'Near kitchen', 'Y'),
+('B3', 'Near restroom', 'Y'),
+('C1', 'Quiet corner', 'Y'),
+('C2', 'Near bar', 'Y'),
+('C3', 'Near window', 'Y');
+
 -- --------------------------------------------------------
 
 --
@@ -66,7 +81,8 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id`, `nomHp`, `email`, `password`, `nama`, `aras`) VALUES
-('67b70babb56f2', '0177028198', 'TIANYINNNLIM@GMAIL.COM', '$2y$10$dKaWMhmXJIy/Lq5dnMU7YuIODAOAIgvaLB1CejWbnyB/t7vVTmxVC', 'TEST', 'PENGGUNA');
+('67b70babb56f2', '0177028198', 'TIANYINNNLIM@GMAIL.COM', 'techblitz', 'TEST', 'PENGGUNA'),
+('67bae4c0336f2', '0123456789', 'ADMIN', '88888888', 'ADMIN', 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -96,6 +112,15 @@ CREATE TABLE `produk` (
   `harga` decimal(10,2) DEFAULT NULL,
   `gambar` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`idProduk`, `namaProduk`, `detail`, `harga`, `gambar`) VALUES
+(1, 'Shoyu Ramen', 'Classic soy sauce based ramen', 10.00, 'shoyu.jpg'),
+(2, 'Miso Ramen', 'Rich miso flavored ramen', 11.00, 'miso.jpg'),
+(3, 'Tonkotsu Ramen', 'Creamy pork bone soup ramen', 12.00, 'tonkotsu.jpg');
 
 --
 -- Indexes for dumped tables
@@ -145,19 +170,19 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `belian`
 --
 ALTER TABLE `belian`
-  MODIFY `idBelian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `bil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idProduk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
