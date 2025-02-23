@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Log Masuk - The Ramen House</title>
 </head>
 <body>
     <div class="login-container">

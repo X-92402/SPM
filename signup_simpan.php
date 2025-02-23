@@ -17,14 +17,18 @@ if (isset($_POST['hantar'])) {
     }
 
     #SEMAK DULU REKOD SEDIA ADA
-    $semakan = mysqli_query($con, "SELECT * FROM pelanggan WHERE nomHp='$nomhp' OR email='$email'");
-    $detail = mysqli_num_rows($semakan);
+    $stmt = mysqli_prepare($con, "SELECT * FROM pelanggan WHERE nomHp= ? OR email= ?");
+    mysqli_stmt_bind_param($stmt, "ss", $nomhp, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $detail = mysqli_num_rows($result);
 
     #PASTIKAN TIADA REKOD
     if ($detail == 0) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
         $id = uniqid(); // Generate a unique ID
-        mysqli_query($con, "INSERT INTO pelanggan (id, nomHp, email, password, nama, aras) VALUES ('$id', '$nomhp', '$email', '$hashed_password', '$nama', 'PENGGUNA')");
+        $stmt = mysqli_prepare($con, "INSERT INTO pelanggan (id, nomHp, email, password, nama, aras) VALUES (?, ?, ?, ?, ?, 'PENGGUNA')");
+        mysqli_stmt_bind_param($stmt, "sssss", $id, $nomhp, $email, $password, $nama);
+        mysqli_stmt_execute($stmt);
         echo "<script>alert('Pendaftaran berjaya'); window.location='index.php';</script>";
     } else {
         echo "<script>alert('Pendaftaran gagal, Nombor HP atau E-mel anda sudah didaftar'); window.location='sign_up.php';</script>";

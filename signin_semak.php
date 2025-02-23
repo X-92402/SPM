@@ -8,19 +8,26 @@ if (isset($_POST['hantar'])) {
     $pass = mysqli_real_escape_string($con, $_POST['pass']);
 
     #LAKSANA SQL
-    $query = mysqli_query($con, "SELECT * FROM pelanggan WHERE nomHp= '$user' OR email='$user'");
-    $row = mysqli_fetch_assoc($query);
+    $stmt = mysqli_prepare($con, "SELECT * FROM pelanggan WHERE nomHp= ? OR email= ?");
+    mysqli_stmt_bind_param($stmt, "ss", $user, $user);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($query) == 0 || !password_verify($pass, $row['password'])) {
+    if (mysqli_num_rows($result) == 0 || $pass !== $row['password']) {
         #MSG JIKA GAGAL
-        echo "<script>alert('Nombor HP, E-mel atau Kata laluan yang salah'); window.location='index.php';</script>";
+        echo "<script>alert('E-mel atau Kata laluan yang salah'); window.location='index.php';</script>";
     } else {
         #CIPTA SESSION
         $_SESSION['user'] = $row['nomHp'];
         $_SESSION['nama'] = $row['nama'];
         $_SESSION['level'] = $row['aras'];
         #BUKA DASHBOARD
-        header("Location: dashboard.php");
+        if ($row['aras'] == 'ADMIN') {
+            header("Location: admin_dashboard.php");
+        } else {
+            header("Location: dashboard.php");
+        }
     }
 }
 ?>
