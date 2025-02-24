@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pendaftaran - The Ramen House</title>
 </head>
 <body>
     <div class="signup-container">
@@ -11,16 +12,16 @@
         <div class="signup-form">
             <h2>PENDAFTARAN</h2>
             <form method="POST" action="signup_simpan.php">
+                <label for="password">Kata Laluan</label>
+                <input type="password" id="password" name="password" placeholder="Kata Laluan" required minlength="6">
+                <label for="confirm_password">Sahkan Kata Laluan</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Sahkan Kata Laluan" required minlength="6">
                 <label for="nama">Nama</label>
                 <input type="text" id="nama" name="nama" placeholder="Nama" required>
                 <label for="nomhp">Nom. HP</label>
                 <input type="text" id="nomhp" name="nomhp" placeholder="Nom. HP" required pattern="\d{10,11}" title="Please enter a valid phone number">
                 <label for="email">E-mel</label>
                 <input type="email" id="email" name="email" placeholder="E-mel" required>
-                <label for="password">Kata Laluan</label>
-                <input type="password" id="password" name="password" placeholder="Kata Laluan" required minlength="6">
-                <label for="confirm_password">Sahkan Kata Laluan</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Sahkan Kata Laluan" required minlength="6">
                 <button type="submit" name="hantar">DAFTAR</button>
             </form>
             <p>Sudah mempunyai akaun?</p>

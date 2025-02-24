@@ -4,12 +4,10 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 $tarikh = date('Y-m-d H:i:s');
 
 #SETTING DATABASE
-$host = "localhost";
-$user = "root";
-
-#NAMA DB, UBAH DI SINI
-$db = "the ramen shop";
-$password = "";
+$host = getenv('DB_HOST') ?: 'localhost';
+$user = getenv('DB_USER') ?: 'root';
+$db = getenv('DB_NAME') ?: 'the ramen shop';
+$password = getenv('DB_PASSWORD') ?: '';
 
 #SAMBUNGAN PANGKALAN DATA
 $con = mysqli_connect($host, $user, $password, $db);

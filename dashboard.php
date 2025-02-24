@@ -3,7 +3,7 @@
 include 'header.php';
 include 'security.php';
 #PANGGIL FUNGSI
-include 'fungsi.php';
+include 'functions.php';
 #JIKA BAKUL ADA ISI
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -43,15 +43,22 @@ if (!isset($_SESSION['cart'])) {
             <div class="product-list">
                 <?php
                 $products = semuaProduk($con);
-                while ($row = mysqli_fetch_assoc($products)) {
+                if ($products) {
+                    while ($row = mysqli_fetch_assoc($products)) {
                 ?>
-                    <div class="product-item">
-                        <div class="product-image" style="background-image: url('gambar/<?php echo $row['gambar']; ?>');"></div>
-                        <div class="product-details">
-                            <h4><?php echo $row['namaProduk']; ?></h4>
+                        <div class="product-item">
+                            <div class="product-image" style="background-image: url('gambar/<?php echo $row['gambar']; ?>');"></div>
+                            <div class="product-details">
+                                <h4><?php echo $row['namaProduk']; ?></h4>
+                                <p>HARGA RM<?php echo number_format($row['harga'], 2); ?></p>
+                            </div>
                         </div>
-                    </div>
-                <?php } ?>
+                <?php
+                    }
+                } else {
+                    echo "<p>Tiada produk tersedia.</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
