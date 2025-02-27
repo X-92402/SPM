@@ -1,10 +1,10 @@
 <?php
-#MULA SESI
+# STANDARDIZED SESSION HANDLING
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-#SAMBUNG P.DATA
+# SAMBUNG P.DATA
 require 'database.php';
 ?>
 

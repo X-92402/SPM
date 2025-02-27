@@ -6,11 +6,43 @@
  * @return mysqli_result|false Result set or false on failure
  */
 function semuaProduk($con) {
-    $result = mysqli_query($con, "SELECT * FROM produk");
+    $sql = "SELECT * FROM produk";
+    $result = mysqli_query($con, $sql);
     if (!$result) {
         die("Query failed: " . mysqli_error($con));
     }
     return $result;
+}
+
+/**
+ * Get product details by ID.
+ *
+ * @param mysqli $con Database connection
+ * @param int $idProduk Product ID
+ * @return array|null Product details or null if not found
+ */
+function lihatProduk($con, $idProduk) {
+    $sql = "SELECT * FROM produk WHERE idProduk = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $idProduk);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_assoc($result);
+}
+
+/**
+ * Update cart quantity.
+ *
+ * @param int $id Product ID
+ * @param int $qty Quantity
+ * @return void
+ */
+function updateCart($id, $qty) {
+    if ($qty == 0) {
+        unset($_SESSION['cart'][$id]);
+    } else {
+        $_SESSION['cart'][$id] = $qty;
+    }
 }
 
 /**
@@ -21,16 +53,15 @@ function semuaProduk($con) {
  * @return mysqli_result|false Result set or false on failure
  */
 function dapatPesanan($con, $nomHp) {
-    $result = mysqli_query($con, "SELECT p.*, pr.namaProduk, b.kuantiti 
+    $stmt = mysqli_prepare($con, "SELECT p.*, pr.namaProduk, b.kuantiti 
                               FROM pesanan p 
                               JOIN belian b ON p.bil = b.bil
                               JOIN produk pr ON b.idProduk = pr.idProduk
-                              WHERE p.nomHp = '$nomHp'
+                              WHERE p.nomHp = ?
                               ORDER BY p.tarikh DESC");
-    if (!$result) {
-        die("Query failed: " . mysqli_error($con));
-    }
-    return $result;
+    mysqli_stmt_bind_param($stmt, "s", $nomHp);
+    mysqli_stmt_execute($stmt);
+    return mysqli_stmt_get_result($stmt);
 }
 
 /**
@@ -41,11 +72,8 @@ function dapatPesanan($con, $nomHp) {
  */
 function totalJualan($con) {
     $result = mysqli_query($con, "SELECT SUM(b.kuantiti * p.harga) as total 
-                                 FROM belian b 
-                                 JOIN produk p ON b.idProduk = p.idProduk");
-    if (!$result) {
-        die("Query failed: " . mysqli_error($con));
-    }
+                               FROM belian b 
+                               JOIN produk p ON b.idProduk = p.idProduk");
     $row = mysqli_fetch_assoc($result);
     return $row['total'] ?? 0;
 }
