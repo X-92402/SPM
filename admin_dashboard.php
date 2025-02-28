@@ -11,6 +11,7 @@ if ($_SESSION['level'] !== 'ADMIN') {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Admin Dashboard</title>
 </head>
 <body>

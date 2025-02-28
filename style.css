@@ -1,296 +1,288 @@
-/* Color Variables */
+/* Japanese-inspired Color Variables */
 :root {
-    --primary-dark: #2C2C2C;    /* Dark charcoal for text */
-    --primary-red: #A52A2A;     /* Deep red for accents */
-    --secondary-tan: #ffffff;   /* White for backgrounds */
-    --accent-wood: #8B4513;     /* Wood brown for details */
-    --light-cream: #FFF8F0;     /* Light cream for cards */
-    --text-dark: #1A1A1A;       /* Almost black for text */
+  --japanese-red: #BC002D;     /* Traditional Japanese red */
+  --japanese-black: #1A1A1A;   /* Rich black */
+  --japanese-white: #F7F7F7;   /* Soft white */
+  --japanese-accent: #D4A017;  /* Gold accent */
+  --wood-brown: #8B4513;       /* Wood tone for warmth */
 }
 
-/* General Styles */
+/* Base Elements */
+html {
+  font-family: "Noto Sans JP", "Helvetica Neue", sans-serif;
+}
+
 body {
-    background: var(--secondary-tan);
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans JP', 'Helvetica Neue', sans-serif;
+  background: var(--japanese-white);
+  margin: 0;
+  padding: 0;
+  color: var(--japanese-black);
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Header Styles */
+/* Header Styling */
 .header {
-    background-color: var(--primary-dark);
-    color: var(--light-cream);
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    position: fixed; /* Fix the header at the top */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Ensure the header is above other elements */
+  width: 100%;
+  height: 250px;
+  background: var(--japanese-black) url('gambar/banner.png') center/cover;
+  position: relative;
+  color: var(--japanese-white);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 5px solid var(--japanese-red);
 }
 
-/* Menu Styles */
+.header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.header h3 {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: normal;
+}
+
+/* Menu Styling */
 #menu {
-    width: 200px; /* Set a fixed width for the menu */
-    background-color: var(--primary-dark);
-    color: var(--light-cream);
-    padding: 20px;
-    box-sizing: border-box;
-    position: fixed; /* Fix the menu on the left side */
-    top: 80px; /* Position below the header */
-    left: 0;
-    height: calc(100% - 80px); /* Adjust height to account for the header */
-    overflow-y: auto; /* Allow scrolling if the menu content overflows */
+  width: 20%;
+  padding: 15px;
+  background-color: var(--japanese-black);
+  color: var(--japanese-white);
+  float: left;
+  min-height: calc(100vh - 250px);
 }
 
-#menu h4 {
-    margin-top: 0;
-    font-size: 18px; /* Increase font size */
+#menu h3, #menu h4 {
+  color: var(--japanese-white);
+  border-bottom: 2px solid var(--japanese-red);
+  padding-bottom: 10px;
+  margin-top: 0;
 }
 
 #menu ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 #menu ul li {
-    margin: 10px 0;
-    font-size: 16px; /* Increase font size */
+  margin-bottom: 15px;
 }
 
-#menu ul li a {
-    color: var(--light-cream);
-    text-decoration: none;
+#menu a {
+  color: var(--japanese-white);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: block;
+  padding: 5px 0;
 }
 
-#menu ul li button {
-    background-color: var(--primary-red);
-    color: var(--light-cream);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 16px; /* Increase font size */
+#menu a:hover {
+  color: var(--japanese-red);
 }
 
-#menu ul li button:hover {
-    background-color: #8B0000;
-    transform: translateY(-2px);
-}
-
-/* Content Styles */
+/* Content Area Styling */
 #isi {
-    margin-left: 220px; /* Add margin to the left to make space for the menu */
-    margin-top: 100px; /* Add margin to the top to make space for the header */
-    padding: 20px;
-    background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    box-sizing: border-box;
+  width: 80%;
+  padding: 20px;
+  float: left;
+  background-color: var(--japanese-white);
 }
 
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+/* Button Styling */
+button {
+  background-color: var(--japanese-red);
+  color: var(--japanese-white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.product-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: var(--light-cream);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
-    height: auto; /* Remove fixed height */
+button:hover {
+  background-color: #8B0000; /* Darker red */
+  transform: translateY(-2px);
+}
+
+/* Table Styling */
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th {
+  text-align: left;
+  background-color: var(--japanese-black);
+  color: var(--japanese-white);
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: var(--japanese-white);
+}
+
+tr:hover td {
+  background-color: #f5f5f5;
+}
+
+/* Print Functionality */
+@media print {
+  .header, select, form, #menu, #sembunyi, button {
+    display: none;
+  }
+  
+  #printarea, div {
+    top: 0;
+    left: 1%;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+/* Product Cards */
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 300px;
+  margin: 10px;
+  padding: 15px;
+  background-color: var(--japanese-white);
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-card h2, .product-card h4 {
+  color: var(--japanese-black);
+  margin-top: 0.5em;
 }
 
 .product-image {
+  width: 80%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0.5em 0;
+  color: var(--japanese-black);
+}
+
+/* Form Elements */
+input, textarea, select {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Layout Helpers */
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 800px) {
+  #menu, #isi {
     width: 100%;
-    height: 0;
-    padding-bottom: 100%; /* Make it square */
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
+    float: none;
+  }
+  
+  #menu {
+    min-height: auto;
     margin-bottom: 20px;
+  }
+  
+  .product-card {
+    width: calc(50% - 20px);
+  }
 }
 
-.product-details {
-    flex: 1;
-    text-align: center;
+@media screen and (max-width: 500px) {
+  .product-card {
+    width: 100%;
+  }
 }
 
-.product-details h4 {
-    margin: 0;
-    font-size: 18px; /* Increase font size */
+/* Form Container */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.product-details p {
-    font-size: 16px; /* Increase font size */
+/* Japanese-inspired decorative element */
+.japanese-divider {
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--japanese-red), transparent);
+  margin: 20px 0;
+  border: none;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 1024px) {
-    #menu {
-        width: 100%;
-        height: auto;
-        position: relative; /* Change position to relative for smaller screens */
-        top: 0;
-        left: 0;
-    }
-
-    #isi {
-        margin-left: 0; /* Remove left margin for smaller screens */
-        margin-top: 20px; /* Add margin to the top to make space for the menu */
-        width: 100%;
-    }
-
-    .product-item {
-        width: calc(50% - 20px);
-    }
+/* Login and signup form styling */
+.login-container, .signup-container {
+  display: flex;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-@media screen and (max-width: 600px) {
-    .product-item {
-        width: calc(100% - 20px);
-    }
+.login-image, .signup-image {
+  flex: 1;
+  background: var(--japanese-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-/* LOGIN PAGE STYLING */
-.login-container {
-    display: flex;
-    height: 100vh;
-}
-
-.login-image {
-    flex: 1;
-    background-color: var(--light-cream);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.login-form {
-    flex: 1;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.login-form h2 {
-    margin-bottom: 20px;
-}
-
-.login-form form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-
-.login-form input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.login-form button {
-    background-color: var(--primary-red);
-    color: var(--light-cream);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.login-form button:hover {
-    background-color: #8B0000;
-    transform: translateY(-2px);
-}
-
-.login-form a {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* SIGNUP PAGE STYLING */
-.signup-container {
-    display: flex;
-    height: 100vh;
-}
-
-.signup-image {
-    flex: 1;
-    background-color: var(--light-cream);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.signup-form {
-    flex: 1;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.signup-form h2 {
-    margin-bottom: 20px;
-}
-
-.signup-form form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-}
-
-.signup-form input {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.signup-form button {
-    background-color: var(--primary-red);
-    color: var(--light-cream);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.signup-form button:hover {
-    background-color: #8B0000;
-    transform: translateY(-2px);
+.login-form, .signup-form {
+  flex: 1;
+  padding: 30px;
+  background: var(--japanese-white);
 }

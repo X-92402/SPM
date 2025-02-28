@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 #KOSONGKAN SEMUA SESSION
 $_SESSION['cart'] = [];

@@ -1,25 +1,18 @@
 <?php
-include 'header.php';
+session_start();
+include 'database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomHp = $_POST['nomHp'];
     $status = 'PENDING';
-    $meja = ($_SESSION['cara'] === 'TAKE-AWAY') ? null : $_SESSION['meja'];
+    $meja = ($_SESSION['cara'] === 'TAKE-AWAY') ? null : $_SESSION['meja']; // Handle takeaway case
     $cara = $_SESSION['cara'];
-    
-    // Define current date (don't rely on global $tarikh)
-    $currentDate = date('Y-m-d H:i:s');
-    
+
     // Add record to `pesanan` table
     $sqlPesanan = "INSERT INTO pesanan (tarikh, status, nomHp, noMeja, cara) VALUES (?, ?, ?, ?, ?)";
     $stmtPesanan = mysqli_prepare($con, $sqlPesanan);
-    mysqli_stmt_bind_param($stmtPesanan, "sssss", $currentDate, $status, $nomHp, $meja, $cara);
-    
-    if (!mysqli_stmt_execute($stmtPesanan)) {
-        echo "<script>alert('Error: " . mysqli_stmt_error($stmtPesanan) . "'); window.history.back();</script>";
-        exit();
-    }
-    
+    mysqli_stmt_bind_param($stmtPesanan, "sssss", $tarikh, $status, $nomHp, $meja, $cara);
+    mysqli_stmt_execute($stmtPesanan);
     $bil = mysqli_insert_id($con);
     mysqli_stmt_close($stmtPesanan);
 

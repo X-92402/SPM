@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 #SAMBUNG KE DB
 require 'database.php';

@@ -3,11 +3,11 @@
     include 'security.php';
     if ($_SESSION['level'] == "ADMIN") {
     ?>
-        <!-- ADMIN MENU -->
+        <!-- ARAS LOGIN - ADMIN -->
         <h4>MENU PENTADBIR</h4>
         <ul>
-            <li><a href="admin_dashboard.php">UTAMA</a></li>
-            <li><a href="senarai_pesanan.php">PESANAN</a></li>
+            <li><a href="dashboard.php">HOME</a></li>
+            <li><a href="senarai_pesanan.php">SENARAI PESANAN</a></li>
             <li><a href="produk.php">PRODUK</a></li>
             <li><a href="meja.php">MEJA</a></li>  
             <li><a href="laporan.php">LAPORAN</a></li>
@@ -16,14 +16,13 @@
     <?php
     } else {
     ?>
-        <!-- USER MENU -->
+
+        <!-- ARAS LOGIN - PENGGUNA -->
         <h4>MENU PELANGGAN</h4>
         <ul>
-            <li><a href="dashboard.php">UTAMA</a></li>
-            <li><a href="produk_pilih.php">PRODUK</a></li>
-            <li><a href="bakul.php">BAKUL BELIAN</a></li>
-            <li><a href="pesanan.php">PESANAN TERDAHULU</a></li>
+            <li><a href="dashboard.php">HOME</a></li>
             <li><?php include 'produk_cari.php'; ?></li>
+            <li><a href="pesanan.php">PESANAN TERDAHULU</a></li>
             <li><a href="logout.php">KELUAR</a></li>
         </ul>
     <?php } ?>

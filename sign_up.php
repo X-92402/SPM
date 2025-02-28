@@ -1,48 +1,53 @@
-<!DOCTYPE html>
+<?php include 'header.php'; ?>
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Pendaftaran - The Ramen House</title>
-</head>
-<body>
-    <div class="signup-container">
-        <div class="signup-image" style="background-image: url('gambar/Gambar 2.jpg');">
-            <!-- Gambar 2 -->
-        </div>
-        <div class="signup-form">
-            <h2>PENDAFTARAN</h2>
-            <form method="POST" action="signup_simpan.php">
-                <label for="password">Kata Laluan</label>
-                <input type="password" id="password" name="password" placeholder="Kata Laluan" required minlength="6">
-                <label for="confirm_password">Sahkan Kata Laluan</label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Sahkan Kata Laluan" required minlength="6">
-                <label for="nama">Nama</label>
-                <input type="text" id="nama" name="nama" placeholder="Nama" required>
-                <label for="nomhp">Nom. HP</label>
-                <input type="text" id="nomhp" name="nomhp" placeholder="Nom. HP" required pattern="\d{10,11}" title="Please enter a valid phone number">
-                <label for="email">E-mel</label>
-                <input type="email" id="email" name="email" placeholder="E-mel" required>
-                <button type="submit" name="hantar">DAFTAR</button>
-            </form>
-            <p>Sudah mempunyai akaun?</p>
-            <a href="index.php"><button>LOG MASUK</button></a>
-        </div>
-    </div>
-    <script>
-        // Basic client-side validation for password match
-        const password = document.getElementById("password");
-        const confirm_password = document.getElementById("confirm_password");
-
-        function validatePassword() {
-            if (password.value !== confirm_password.value) {
-                confirm_password.setCustomValidity("Passwords do not match");
-            } else {
-                confirm_password.setCustomValidity("");
+    <head>
+        <style>
+            .warning-text {
+                color: red;
             }
-        }
-
-        password.onchange = validatePassword;
-        confirm_password.onkeyup = validatePassword;
-    </script>
-</body>
+            .small-text {
+                font-size: 10px;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- PANGGIL ISI -->
+        <div id="isi">
+            <h2>PENDAFTARAN PELANGGAN BARU </h2>
+            <form method="POST" action="signup_simpan.php">
+                <p class="warning-text">
+                    *Pastikan maklumat anda betul sebelum membuat pendaftaran.
+                </p>
+                <p>
+                    Nombor HP<br>
+                    <input type="text" 
+                           name="nomhp" 
+                           placeholder="Nombor HP tanpa tanda -" 
+                           minLength="9" 
+                           maxLength="11"
+                           size="30" 
+                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' 
+                           required 
+                           autofocus><br>
+                    <span class="small-text">
+                        *Password adalah 4 digit di depan nombor HP anda yang dijana secara automatik.
+                    </span>
+                </p>
+                <p>
+                    Nama<br>
+                    <input type="text" 
+                           name="nama" 
+                           placeholder="Nama Anda"
+                           size="60" 
+                           required>
+                </p>
+                <br>
+                <div>
+                    <button name="hantar" type="submit">DAFTAR</button>
+                    <a href="index.php"><button type="button">LOGIN</button></a>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>

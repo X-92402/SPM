@@ -1,8 +1,5 @@
 <?php
 include 'database.php';
-include 'header.php';
-include 'functions.php';
-
 #TERIMA NILAI YANG DI POST
 if (isset($_POST['simpan'])) {
     $data1 = $_POST['idProduk'];

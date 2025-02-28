@@ -1,4 +1,5 @@
 <?php
+session_start();
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idProduk = $_POST['idProduk'];
     $qty = $_POST['ktt'];
