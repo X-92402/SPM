@@ -30,7 +30,7 @@
                     <td><?php echo $sno;?></td>
                     <td><?php echo $data1['noMeja'];?></td>
                     <td><?php echo $data1['info'];?></td>
-                    <td><?php echo $data1['tersedia'];?></td>
+                    <td><?php echo $data1['tersedia'] == 1 ? 'Tersedia' : 'Tidak Tersedia';?></td>
                     <td>
                         <a href="meja_edit.php?id=<?php echo $data1['noMeja'];?>"><button>EDIT</button></a>
                         <a href="meja_hapus.php?id=<?php echo $data1['noMeja'];?>"><button>HAPUS</button></a>

@@ -2,16 +2,26 @@
 include 'header.php';
 include 'security.php';
 
+$message = '';
+
 if (isset($_POST['tambah'])) {
     $noMeja = mysqli_real_escape_string($con, $_POST['noMeja']);
     $info = mysqli_real_escape_string($con, $_POST['info']);
-    mysqli_query($con, "INSERT INTO meja (noMeja, info, tersedia) VALUES ('$noMeja', '$info', 'Y')");
+    if (mysqli_query($con, "INSERT INTO meja (noMeja, info, tersedia) VALUES ('$noMeja', '$info', 'Y')")) {
+        $message = 'Meja berjaya ditambah.';
+    } else {
+        $message = 'Gagal menambah meja.';
+    }
 }
 
 if (isset($_POST['update'])) {
     $noMeja = mysqli_real_escape_string($con, $_POST['noMeja']);
-    $tersedia = $_POST['tersedia'];
-    mysqli_query($con, "UPDATE meja SET tersedia='$tersedia' WHERE noMeja='$noMeja'");
+    $tersedia = mysqli_real_escape_string($con, $_POST['tersedia']);
+    if (mysqli_query($con, "UPDATE meja SET tersedia='$tersedia' WHERE noMeja='$noMeja'")) {
+        $message = 'Status meja berjaya dikemaskini.';
+    } else {
+        $message = 'Gagal mengemaskini status meja.';
+    }
 }
 ?>
 
@@ -28,6 +38,10 @@ if (isset($_POST['update'])) {
         </div>
         
         <div id="isi">
+            <?php if ($message): ?>
+                <p><?php echo $message; ?></p>
+            <?php endif; ?>
+
             <form method="POST" class="form">
                 <h3>Tambah Meja</h3>
                 <input type="text" name="noMeja" placeholder="No Meja" required>
@@ -54,7 +68,7 @@ if (isset($_POST['update'])) {
                     echo "<td>".$row['info']."</td>";
                     echo "<td>".$row['tersedia']."</td>";
                     echo "<td>
-                        <form method='POST' style='display:inline;'>
+                        <form method='POST' action='meja_urus.php' style='display:inline;'>
                             <input type='hidden' name='noMeja' value='".$row['noMeja']."'>
                             <select name='tersedia'>
                                 <option value='Y' ".($row['tersedia'] == 'Y' ? 'selected' : '').">Tersedia</option>

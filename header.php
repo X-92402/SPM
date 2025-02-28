@@ -10,7 +10,7 @@ require 'database.php';
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- PANGGIL CSS EXTERNAL -->
-<link rel="icon" type="image/png" href="imej/favicon.ico"/>
+<link rel="icon" type="image/x-icon" href="gambar/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="style.css">
 <title><?php echo $namasys;?></title>
 
@@ -18,7 +18,7 @@ require 'database.php';
 <div class="header">
     <br>
         <h1><?php echo $namasys1;?></h1>
-        <h3><?php echo $motto;;?></h3>
+        <h3><?php echo $motto;?></h3>
     <!-- PAPAR UTILITI BUTANG ZOOM IN OUT WARNA-->
      <?php include 'utiliti.php'; ?>
 </div>

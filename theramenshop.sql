@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2025 at 10:54 AM
+-- Generation Time: Feb 28, 2025 at 05:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `the ramen shop`
+-- Database: `theramenshop`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `belian` (
   `idBelian` int(11) NOT NULL,
-  `kuantiti` int(11) DEFAULT NULL,
+  `kuantiti` int(11) DEFAULT NULL CHECK (`kuantiti` > 0),
   `idProduk` int(11) DEFAULT NULL,
   `bil` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -43,7 +43,7 @@ CREATE TABLE `belian` (
 CREATE TABLE `meja` (
   `noMeja` varchar(10) NOT NULL,
   `info` varchar(20) DEFAULT NULL,
-  `tersedia` varchar(2) DEFAULT NULL
+  `tersedia` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -51,15 +51,15 @@ CREATE TABLE `meja` (
 --
 
 INSERT INTO `meja` (`noMeja`, `info`, `tersedia`) VALUES
-('A1', 'Window seat', 'Y'),
-('A2', 'Corner table', 'Y'),
-('A3', 'Near entrance', 'Y'),
-('B1', 'Center table', 'Y'),
-('B2', 'Near kitchen', 'Y'),
-('B3', 'Near restroom', 'Y'),
-('C1', 'Quiet corner', 'Y'),
-('C2', 'Near bar', 'Y'),
-('C3', 'Near window', 'Y');
+('A1', '2 ORANG', 1),
+('A2', '4 ORANG', 1),
+('A3', '6 ORANG', 0),
+('B1', '2 ORANG', 0),
+('B2', '4 ORANG', 0),
+('B3', '6 ORANG', 0),
+('C1', '1 ORANG', 0),
+('C2', '3 ORANG', 0),
+('C3', '5 ORANG', 0);
 
 -- --------------------------------------------------------
 
@@ -68,10 +68,8 @@ INSERT INTO `meja` (`noMeja`, `info`, `tersedia`) VALUES
 --
 
 CREATE TABLE `pelanggan` (
-  `id` varchar(13) NOT NULL,
-  `nomHp` varchar(11) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `nomHp` varchar(11) NOT NULL,
+  `password` varchar(4) DEFAULT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `aras` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -80,9 +78,9 @@ CREATE TABLE `pelanggan` (
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id`, `nomHp`, `email`, `password`, `nama`, `aras`) VALUES
-('67b70babb56f2', '0177028198', 'TIANYINNNLIM@GMAIL.COM', 'techblitz', 'TEST', 'PENGGUNA'),
-('67bae4c0336f2', '0123456789', 'ADMIN', '88888888', 'ADMIN', 'ADMIN');
+INSERT INTO `pelanggan` (`nomHp`, `password`, `nama`, `aras`) VALUES
+('0177028198', '0177', 'TEST', 'PENGGUNA'),
+('8888888888', '8888', 'ADMIN', 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -92,8 +90,8 @@ INSERT INTO `pelanggan` (`id`, `nomHp`, `email`, `password`, `nama`, `aras`) VAL
 
 CREATE TABLE `pesanan` (
   `bil` int(11) NOT NULL,
-  `tarikh` datetime DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
+  `tarikh` datetime DEFAULT current_timestamp(),
+  `status` varchar(20) DEFAULT 'Pending',
   `nomHp` varchar(11) DEFAULT NULL,
   `noMeja` varchar(10) DEFAULT NULL,
   `cara` varchar(10) DEFAULT NULL
@@ -110,7 +108,7 @@ CREATE TABLE `produk` (
   `namaProduk` varchar(255) DEFAULT NULL,
   `detail` text DEFAULT NULL,
   `harga` decimal(10,2) DEFAULT NULL,
-  `gambar` varchar(20) DEFAULT NULL
+  `gambar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -118,9 +116,9 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`idProduk`, `namaProduk`, `detail`, `harga`, `gambar`) VALUES
-(1, 'Shoyu Ramen', 'Classic soy sauce based ramen', 10.00, 'shoyu.jpg'),
-(2, 'Miso Ramen', 'Rich miso flavored ramen', 11.00, 'miso.jpg'),
-(3, 'Tonkotsu Ramen', 'Creamy pork bone soup ramen', 12.00, 'tonkotsu.jpg');
+(1, 'Tonkotsu Ramen', 'Tonkotsu Ramen berasal dari Fukuoka dan dikenali dengan kuah yang berkrim dan berlemak hasil rebusan tulang babi dalam tempoh yang lama.', 12.00, 'tonkotsu.jpg'),
+(2, 'Shoyu Ramen', 'Shoyu Ramen adalah salah satu jenis ramen klasik di Jepun yang menggunakan kicap soya (shoyu) sebagai asas kuahnya.', 12.00, 'shoyu.jpg'),
+(3, 'Miso Ramen', 'Miso Ramen berasal dari Hokkaido dan menggunakan pes miso untuk menghasilkan kuah yang kaya dan beraroma.', 10.00, 'miso.jpg');
 
 --
 -- Indexes for dumped tables
@@ -144,9 +142,7 @@ ALTER TABLE `meja`
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nomHp` (`nomHp`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`nomHp`);
 
 --
 -- Indexes for table `pesanan`
@@ -170,19 +166,19 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `belian`
 --
 ALTER TABLE `belian`
-  MODIFY `idBelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idBelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `bil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `idProduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idProduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

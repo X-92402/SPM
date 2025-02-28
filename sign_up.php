@@ -45,7 +45,7 @@
                 <br>
                 <div>
                     <button name="hantar" type="submit">DAFTAR</button>
-                    <a href="index.php"><button type="button">BALIKw</button></a>
+                    <a href="index.php"><button type="button">BALIK</button></a>
                 </div>
             </form>
         </div>

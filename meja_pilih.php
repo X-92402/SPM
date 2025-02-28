@@ -26,7 +26,7 @@ if (isset($_POST['semak'])) {
                     <h2><?php echo $row['noMeja'];?></h2>
                     <p><?php echo $row['info'];?></p>
                     <?php
-                    if ($row['tersedia']=="Y") {
+                    if ($row['tersedia'] == 1) {
                     ?>
                         <form method="post">
                             <input type="hidden" name="meja" value="<?php echo $row['noMeja'];?>">

@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update table status if `meja` is set
     if ($meja !== null) {
-        mysqli_query($con, "UPDATE meja SET tersedia='N' WHERE noMeja='$meja'");
+        mysqli_query($con, "UPDATE meja SET tersedia=0 WHERE noMeja='$meja'");
     }
 
     // Clear cart and session variables
