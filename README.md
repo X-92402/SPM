@@ -7,4 +7,5 @@ DATABASE IS EXTRACTED FROM SQL
 PLEASE REGISTER BEFORE LOGIN
 - TIAN YIN LIM 5T2
 
-![hippo]([https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif](https://giphy.com/explore/cat-spinning-stickers))
+![til](https://raw.githubusercontent.com/hashrocket/hr-til/master/app/assets/images/banner.png)
+
