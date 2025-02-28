@@ -7,5 +7,5 @@ DATABASE IS EXTRACTED FROM SQL
 PLEASE REGISTER BEFORE LOGIN
 - TIAN YIN LIM 5T2
 
-![hippo](https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif)
+![hippo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2ZnYzQ2aDVtb3JueHJsZXlhODM0YmRjaGl0dnZvYWg2amF6bGswMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/yASFCj2K0MGeASqSom/giphy.gif)
 
